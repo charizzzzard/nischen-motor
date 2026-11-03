@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "nischen-motor"
+version = "0.1.0"
+description = "Statischer Website-Motor für das Nischen-Portfolio: Markdown rein, geprüfte Website raus"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "Markdown>=3.5",
+    "Jinja2>=3.1",
+    "PyYAML>=6.0",
+]
+
+[project.optional-dependencies]
+test = ["pytest>=8"]
+
+[project.scripts]
+motor = "motor.cli:main"
+
+[tool.setuptools]
+packages = ["motor"]
+include-package-data = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

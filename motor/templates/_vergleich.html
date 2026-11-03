@@ -1,0 +1,15 @@
+<figure class="vergleich">
+<p class="vergleich__titel">{{ v.titel }} <span class="vergleich__stand">Stand: {{ v.stand_text }}</span></p>
+<div class="vergleich__rollbereich" tabindex="0" role="region" aria-label="{{ v.titel }}">
+<table>
+<caption class="unsichtbar">{{ v.titel }}, Stand: {{ v.stand_text }}</caption>
+<thead><tr><th scope="col">Anbieter</th>{% for s in v.spalten %}<th scope="col">{{ s.name }}</th>{% endfor %}<th scope="col">Quelle</th>{% if v.mit_partner %}<th scope="col"><span class="unsichtbar">Link zum Anbieter</span></th>{% endif %}</tr></thead>
+<tbody>
+{% for e in v.eintraege %}
+<tr><th scope="row">{{ e.name }}</th>{% for s in v.spalten %}<td>{{ e.werte.get(s.id, "–") }}</td>{% endfor %}<td><a href="{{ e.quelle }}">Quelle</a></td>{% if v.mit_partner %}<td>{% if e.get("partner") %}<a href="partner:{{ e.partner }}">Zum Anbieter</a>{% endif %}</td>{% endif %}</tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+<figcaption>{% if v.hinweis is defined %}{{ v.hinweis }} {% endif %}{% if v.get("sortierung", "alphabetisch") == "alphabetisch" %}Alphabetisch sortiert – die Reihenfolge ist keine Bewertung.{% endif %}</figcaption>
+</figure>

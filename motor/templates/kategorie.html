@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block titel %}{{ kategorie.name }} – {{ site.name }}{% endblock %}
+{% block beschreibung %}{{ kategorie.beschreibung | default(site.beschreibung) }}{% endblock %}
+{% block inhalt %}
+<nav class="pfad" aria-label="Brotkrumen"><a href="/">Start</a> › {{ kategorie.name }}</nav>
+<h1>{{ kategorie.name }}</h1>
+{% if kategorie.beschreibung is defined %}<p class="einleitung__text">{{ kategorie.beschreibung }}</p>{% endif %}
+<ul class="liste">
+  {% for a in kategorie.artikel %}{% include "_karte.html" %}{% endfor %}
+</ul>
+{% endblock %}

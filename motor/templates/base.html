@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {% set seitentitel %}{% block titel %}{{ site.name }}{% endblock %}{% endset %}
+  {% set beschreibung %}{% block beschreibung %}{{ site.beschreibung }}{% endblock %}{% endset %}
+  <title>{{ seitentitel | trim }}</title>
+  <meta name="description" content="{{ beschreibung | trim }}">
+  {% if not site.indexierung %}
+  <meta name="robots" content="noindex, nofollow">
+  {% endif %}
+  <link rel="canonical" href="{{ site.url }}{{ pfad }}">
+  <meta property="og:type" content="{% block og_typ %}website{% endblock %}">
+  <meta property="og:site_name" content="{{ site.name }}">
+  <meta property="og:locale" content="de_DE">
+  <meta property="og:title" content="{{ seitentitel | trim }}">
+  <meta property="og:description" content="{{ beschreibung | trim }}">
+  <meta property="og:url" content="{{ site.url }}{{ pfad }}">
+  {% if site.og_bild is defined and site.og_bild %}
+  <meta property="og:image" content="{{ site.url }}{{ site.og_bild }}">
+  {% endif %}
+  {% for icon in favicons %}
+  <link rel="icon" href="{{ icon.href }}"{% if icon.typ %} type="{{ icon.typ }}"{% endif %}>
+  {% endfor %}
+  <link rel="alternate" type="application/atom+xml" title="{{ site.name }}" href="/feed.xml">
+  <link rel="stylesheet" href="/css/motor.css?v={{ versionen.motor_css }}">
+  {% if versionen.site_css %}
+  <link rel="stylesheet" href="/css/site.css?v={{ versionen.site_css }}">
+  {% endif %}
+  {% if design_css %}
+  <style>{{ design_css }}</style>
+  {% endif %}
+  <script type="application/ld+json">{{ ld_organisation | safe }}</script>
+  {% block kopf %}{% endblock %}
+</head>
+<body>
+  <a class="sprung" href="#inhalt">Direkt zum Inhalt</a>
+  <header class="kopf">
+    <div class="rahmen kopf__innen">
+      <a class="marke" href="/">{{ site.name }}</a>
+      {% if kategorien %}
+      <nav class="navigation" aria-label="Themen">
+        {% for k in kategorien %}
+        <a href="{{ k.url }}"{% if pfad.startswith(k.url) %} aria-current="page"{% endif %}>{{ k.name }}</a>
+        {% endfor %}
+      </nav>
+      {% endif %}
+    </div>
+  </header>
+  <main id="inhalt" class="rahmen">
+    {% block inhalt %}{% endblock %}
+  </main>
+  <footer class="fuss">
+    <div class="rahmen">
+      <nav class="fuss__links" aria-label="Über uns und Rechtliches">
+        {% for s in fuss_seiten %}
+        <a href="{{ s.url }}">{{ s.meta.titel }}</a>
+        {% endfor %}
+      </nav>
+      <p>© {{ jahr }} {{ site.betreiber }}</p>
+    </div>
+  </footer>
+</body>
+</html>

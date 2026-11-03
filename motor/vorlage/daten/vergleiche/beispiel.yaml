@@ -1,0 +1,17 @@
+# Vergleichsdaten. Jede Zeile braucht eine eigene Quelle (Herstellerseite, Preisliste) – nur belegte Werte eintragen.
+titel: "Beispiel: Programme im Überblick"
+stand: 2026-11-03                         # Datum der Prüfung; der Check warnt nach 30 und stoppt nach 60 Tagen
+sortierung: alphabetisch                  # alphabetisch (Standard, keine Rangliste) | wie_angegeben
+hinweis: "Preise ohne Gewähr, Stand siehe oben."
+spalten:
+  - id: preis
+    name: "Preis pro Monat"
+  - id: e_rechnung
+    name: "E-Rechnung"
+eintraege:
+  - name: "Beispiel-Software"
+    partner: beispiel-software
+    quelle: "https://www.example.com/preise"
+    werte:
+      preis: "PLATZHALTER"
+      e_rechnung: "PLATZHALTER"

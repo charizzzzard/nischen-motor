@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block inhalt %}
+<section class="einleitung">
+  <h1>{{ site.start_titel | default(site.name) }}</h1>
+  <p class="einleitung__text">{{ site.beschreibung }}</p>
+</section>
+{% for k in kategorien %}
+<section class="rubrik">
+  <h2><a href="{{ k.url }}">{{ k.name }}</a></h2>
+  <ul class="liste">
+    {% for a in k.artikel[:6] %}{% include "_karte.html" %}{% endfor %}
+  </ul>
+</section>
+{% else %}
+<p>Hier entstehen in Kürze die ersten Ratgeber.</p>
+{% endfor %}
+{% endblock %}

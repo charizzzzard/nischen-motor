@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block titel %}{{ seite.meta.titel }} – {{ site.name }}{% endblock %}
+{% block beschreibung %}{{ seite.meta.beschreibung | default(site.beschreibung) }}{% endblock %}
+{% block inhalt %}
+<article class="artikel">
+  <h1>{{ seite.meta.titel }}</h1>
+  <div class="text">
+    {{ seite.html | safe }}
+  </div>
+</article>
+{% endblock %}

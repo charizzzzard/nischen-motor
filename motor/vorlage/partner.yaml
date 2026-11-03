@@ -1,0 +1,15 @@
+# Partnerprogramme. Im Text: [Zum Anbieter](partner:<id>)
+# aktiv: false  → normaler Link auf fallback_url (keine Provision, keine Kennzeichnung)
+# aktiv: true   → Partnerlink mit rel="sponsored", Markierung * und Werbehinweis oben im Artikel.
+#                 Nur erlaubt, wenn site.yaml → einnahmen_erlaubt: true.
+# Platzhalter in url: {kennung} (aus site.yaml → partner_kennungen.<netzwerk>), {slug} (Artikel, für die Auswertung)
+
+beispiel-software:
+  name: "Beispiel-Software"
+  netzwerk: awin
+  aktiv: false
+  fallback_url: "https://www.example.com/"
+  url: "https://www.awin1.com/cread.php?awinmid=0&awinaffid={kennung}&clickref={slug}"
+  programm_url: "https://ui.awin.com/"
+  stand: 2026-11-03                       # wann Konditionen zuletzt geprüft wurden
+  konditionen: "PLATZHALTER: Provision und Laufzeit laut Programmseite"

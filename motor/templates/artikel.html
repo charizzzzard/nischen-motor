@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block titel %}{{ artikel.meta.seo_titel | default(artikel.titel) }}{% endblock %}
+{% block beschreibung %}{{ artikel.beschreibung }}{% endblock %}
+{% block og_typ %}article{% endblock %}
+{% block kopf %}
+  <script type="application/ld+json">{{ strukturdaten | safe }}</script>
+  {% for s in artikel.meta.skripte | default([]) %}
+  <script src="{{ s }}" defer></script>
+  {% endfor %}
+{% endblock %}
+{% block inhalt %}
+<nav class="pfad" aria-label="Brotkrumen"><a href="/">Start</a> › <a href="{{ kategorie.url }}">{{ kategorie.name }}</a></nav>
+<article class="artikel">
+  <header class="artikel__kopf">
+    <h1>{{ artikel.titel }}</h1>
+    <p class="artikel__daten">
+      Veröffentlicht am {{ artikel.veroeffentlicht | datum }}
+      {% if artikel.aktualisiert != artikel.veroeffentlicht %} · aktualisiert am {{ artikel.aktualisiert | datum }}{% endif %}
+      · Quellen geprüft am {{ artikel.geprueft | datum }}
+      {% if artikel.meta.getestet is defined and artikel.meta.getestet %} · Getestet: {{ artikel.meta.getestet }}{% endif %}
+      · {{ artikel.lesezeit }} Min. Lesezeit
+    </p>
+  </header>
+  {% if artikel.partner_aktiv %}
+  <aside class="offenlegung" role="note">
+    <strong>Hinweis zu Werbung:</strong> {{ site.offenlegung_text }} <a href="{{ site.werbung_pfad }}">Mehr dazu</a>
+  </aside>
+  {% endif %}
+  <section class="kurz" aria-label="Kurz gesagt">
+    <p class="kurz__titel">Kurz gesagt</p>
+    {{ artikel.kurz_html | safe }}
+  </section>
+  {% if artikel.toc | length >= 3 %}
+  <nav class="inhaltsverzeichnis" aria-label="Inhalt">
+    <p class="inhaltsverzeichnis__titel">Inhalt</p>
+    <ol>
+      {% for t in artikel.toc %}<li><a href="#{{ t.id }}">{{ t.name }}</a></li>{% endfor %}
+    </ol>
+  </nav>
+  {% endif %}
+  <div class="text">
+    {{ artikel.html | safe }}
+  </div>
+  {% if site.artikel_hinweis %}
+  <p class="artikel__hinweis">{{ site.artikel_hinweis }}</p>
+  {% endif %}
+  <section class="quellen">
+    <h2>Quellen</h2>
+    <ul>
+      {% for q in artikel.quellen %}<li>{{ q.herausgeber }}: <a href="{{ q.url }}">{{ q.titel }}</a></li>{% endfor %}
+    </ul>
+  </section>
+  {% if artikel.verwandte %}
+  <section class="verwandt">
+    <h2>Passend dazu</h2>
+    <ul class="liste">
+      {% for a in artikel.verwandte %}{% include "_karte.html" %}{% endfor %}
+    </ul>
+  </section>
+  {% endif %}
+</article>
+{% endblock %}

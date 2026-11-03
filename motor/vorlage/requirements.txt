@@ -1,0 +1,3 @@
+# Lokal installieren (nutzt Ihre Git-Zugangsdaten für das private Motor-Repo):
+#   pip install -r requirements.txt
+nischen-motor @ git+https://github.com/charizzzzard/nischen-motor@v0.1.0

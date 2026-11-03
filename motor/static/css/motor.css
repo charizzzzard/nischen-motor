@@ -1,0 +1,114 @@
+/* nischen-motor – Grundgestaltung. Farben je Website über site.yaml → design (akzent, text, hintergrund, flaeche, linie)
+   oder eine eigene static/css/site.css. Keine fremden Schriften, keine fremden Dienste. */
+:root {
+  --akzent: #1f5f8b;
+  --text: #1b1d21;
+  --text-leise: #4a4f57;
+  --hintergrund: #ffffff;
+  --flaeche: #f3f5f7;
+  --linie: #d9dde3;
+  --warnung: #8a4b00;
+  --schrift: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --breite: 46rem;
+  --radius: 6px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { font-size: 100%; -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  font-family: var(--schrift);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  color: var(--text);
+  background: var(--hintergrund);
+}
+img { max-width: 100%; height: auto; }
+a { color: var(--akzent); text-underline-offset: 0.15em; }
+a:hover { text-decoration-thickness: 2px; }
+:focus-visible { outline: 3px solid var(--akzent); outline-offset: 2px; }
+
+.rahmen { max-width: var(--breite); margin: 0 auto; padding: 0 1rem; }
+.unsichtbar {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}
+.sprung { position: absolute; left: -999px; top: 0; background: var(--hintergrund); padding: 0.5rem 1rem; }
+.sprung:focus { left: 1rem; z-index: 10; }
+
+/* Kopf und Fuß */
+.kopf { border-bottom: 1px solid var(--linie); margin-bottom: 2rem; }
+.kopf__innen { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 1.5rem; padding-top: 1rem; padding-bottom: 1rem; }
+.marke { font-weight: 700; font-size: 1.25rem; color: var(--text); text-decoration: none; }
+.navigation { display: flex; flex-wrap: wrap; gap: 0.25rem 1rem; }
+.navigation a { display: inline-block; padding: 0.4rem 0; min-height: 44px; line-height: 2; color: var(--text-leise); text-decoration: none; }
+.navigation a[aria-current="page"], .navigation a:hover { color: var(--akzent); text-decoration: underline; }
+.fuss { border-top: 1px solid var(--linie); margin-top: 3rem; padding: 1.5rem 0 2.5rem; font-size: 0.9375rem; color: var(--text-leise); }
+.fuss__links { display: flex; flex-wrap: wrap; gap: 0.25rem 1.25rem; }
+.fuss__links a { display: inline-block; min-height: 44px; line-height: 2.75; color: var(--text-leise); }
+
+/* Überschriften und Text */
+h1 { font-size: 2rem; line-height: 1.2; margin: 0 0 0.75rem; }
+h2 { font-size: 1.4rem; line-height: 1.3; margin: 2.25rem 0 0.75rem; }
+h3 { font-size: 1.15rem; margin: 1.75rem 0 0.5rem; }
+p, ul, ol { margin: 0 0 1rem; }
+li { margin-bottom: 0.35rem; }
+.pfad { font-size: 0.9375rem; color: var(--text-leise); margin-bottom: 1rem; }
+.einleitung__text { font-size: 1.15rem; color: var(--text-leise); }
+
+/* Listen und Karten */
+.liste { list-style: none; padding: 0; display: grid; gap: 1rem; }
+.karte { border: 1px solid var(--linie); border-radius: var(--radius); padding: 1rem 1.1rem; margin: 0; }
+.karte__titel { font-weight: 650; font-size: 1.1rem; }
+.karte__text { margin: 0.35rem 0 0; color: var(--text-leise); }
+.rubrik { margin-top: 2rem; }
+
+/* Artikel */
+.artikel__daten { font-size: 0.9375rem; color: var(--text-leise); }
+.kurz { background: var(--flaeche); border-left: 4px solid var(--akzent); border-radius: var(--radius); padding: 1rem 1.25rem; margin: 1.5rem 0; }
+.kurz__titel { font-weight: 700; margin-bottom: 0.4rem; }
+.kurz p:last-child { margin-bottom: 0; }
+.offenlegung { border: 1px solid var(--linie); border-radius: var(--radius); padding: 0.75rem 1rem; font-size: 0.9375rem; margin: 1rem 0; }
+.inhaltsverzeichnis { border: 1px solid var(--linie); border-radius: var(--radius); padding: 0.75rem 1.25rem; margin: 1.5rem 0; }
+.inhaltsverzeichnis__titel { font-weight: 700; margin-bottom: 0.25rem; }
+.artikel__hinweis { font-size: 0.9375rem; color: var(--text-leise); border-top: 1px solid var(--linie); padding-top: 1rem; margin-top: 2rem; }
+.quellen { font-size: 0.9375rem; }
+.partnerlink__marke { margin-left: 0.1em; }
+
+/* Hinweiskästen (Markdown: !!! tipp "Titel") */
+.admonition { border-left: 4px solid var(--akzent); background: var(--flaeche); border-radius: var(--radius); padding: 0.75rem 1rem; margin: 1.5rem 0; }
+.admonition-title { font-weight: 700; margin-bottom: 0.35rem; }
+.admonition p:last-child { margin-bottom: 0; }
+.admonition.wichtig { border-left-color: var(--warnung); }
+
+/* Vergleichstabelle */
+.vergleich { margin: 1.5rem 0; }
+.vergleich__rollbereich { overflow-x: auto; position: relative; } /* relative: hält versteckte Hilfstexte im Rollbereich */
+.vergleich table { border-collapse: collapse; width: 100%; font-size: 0.9375rem; }
+.vergleich__titel { font-weight: 700; margin-bottom: 0.5rem; }
+.vergleich__stand { font-weight: 400; color: var(--text-leise); }
+.vergleich th, .vergleich td { border-bottom: 1px solid var(--linie); padding: 0.55rem 0.6rem; text-align: left; vertical-align: top; }
+.vergleich thead th { background: var(--flaeche); }
+.vergleich figcaption { font-size: 0.875rem; color: var(--text-leise); margin-top: 0.5rem; }
+
+/* Werkzeuge (Formulare der eigenen Skripte) */
+.werkzeug { border: 1px solid var(--linie); border-radius: var(--radius); padding: 1rem 1.25rem; margin: 1.5rem 0; }
+.werkzeug label { display: block; font-weight: 600; margin: 0.75rem 0 0.25rem; }
+.werkzeug input, .werkzeug select, .werkzeug textarea {
+  font: inherit; width: 100%; max-width: 24rem; padding: 0.5rem 0.6rem; min-height: 44px;
+  border: 1px solid var(--linie); border-radius: var(--radius);
+}
+.knopf {
+  display: inline-block; font: inherit; font-weight: 650; min-height: 44px; padding: 0.55rem 1.1rem; margin-top: 1rem;
+  background: var(--akzent); color: #fff; border: 0; border-radius: var(--radius); cursor: pointer;
+}
+
+@media (max-width: 30rem) {
+  h1 { font-size: 1.65rem; }
+  body { font-size: 1rem; }
+}
+
+@media print {
+  .kopf, .fuss, .navigation, .inhaltsverzeichnis, .verwandt { display: none; }
+  a { color: inherit; }
+}

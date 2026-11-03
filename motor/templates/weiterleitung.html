@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <title>Weitergeleitet – {{ site.name }}</title>
+  <meta http-equiv="refresh" content="0; url={{ ziel }}">
+  <link rel="canonical" href="{{ site.url }}{{ ziel }}">
+  <meta name="robots" content="noindex">
+</head>
+<body>
+  <p>Diese Seite ist umgezogen: <a href="{{ ziel }}">{{ site.url }}{{ ziel }}</a></p>
+</body>
+</html>

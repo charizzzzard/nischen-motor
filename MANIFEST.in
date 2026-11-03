@@ -1,0 +1,4 @@
+graft motor/templates
+graft motor/static
+graft motor/vorlage
+global-exclude __pycache__ *.pyc

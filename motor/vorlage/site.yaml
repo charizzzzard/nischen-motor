@@ -1,0 +1,33 @@
+# Website-Konfiguration für nischen-motor. Felder ohne Kommentar „optional“ sind Pflicht.
+name: "Beispiel-Ratgeber"                 # PLATZHALTER: Markenname der Website
+url: "https://www.beispiel.de"            # PLATZHALTER: echte Domain, mit https://, ohne / am Ende
+beschreibung: "Verständliche Ratgeber mit Quellen: Pflichten, Werkzeuge und Vergleiche für den Alltag."
+betreiber: "Vorname Nachname"             # PLATZHALTER: wie im Impressum
+redaktion: "Beispiel-Redaktion"           # optional; Absender der Texte (keine erfundenen Personen)
+indexierung: false                        # true erst, wenn Impressum/Datenschutz fertig sind (Check prüft Platzhalter)
+einnahmen_erlaubt: false                  # true erst nach Gewerbeanmeldung (Geschäftsordnung Leitstand, Abschnitt 7)
+artikel_praefix: "ratgeber"               # Adresse der Texte: /ratgeber/<slug>/ ("" = /<slug>/)
+start_titel: "Beispiel-Ratgeber"          # optional: H1 der Startseite
+
+kategorien:
+  - slug: grundlagen
+    name: Grundlagen
+    beschreibung: "Was Sie wissen müssen – verständlich erklärt, mit Quellen."
+  - slug: werkzeuge
+    name: Werkzeuge und Vergleiche
+
+# Hinweis unter jedem Artikel (z. B. bei Steuer- oder Rechtsthemen)
+artikel_hinweis: "Allgemeine Information mit Stand-Datum. Sie ersetzt keine Beratung im Einzelfall."
+
+# Partnerprogramm-Kennungen je Netzwerk (für {kennung} in partner.yaml)
+partner_kennungen: {}
+  # awin: "123456"
+
+# Farben (optional, #RRGGBB): akzent, text, hintergrund, flaeche, linie
+design:
+  akzent: "#1f5f8b"
+
+# Grenzwerte der Prüfung (optional, Standard siehe motor/check.py)
+regeln:
+  werbefreie_kategorien: []               # Kategorien ohne jede Werbung/Partnerlinks
+  min_woerter: 450
