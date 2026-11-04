@@ -52,10 +52,10 @@ motor check                  # bauen + prüfen, Exit 1 bei Fehlern
 ```
 
 **Websites binden eine feste Version ein:** `requirements.txt` und `.motor-version`.
+Beide nennen dasselbe Tag; die CI der Website bricht ab, wenn sie voneinander abweichen.
 
-Weil dieses Repo privat ist, braucht die CI einer Website ein Lese-Token als Repository-Secret `MOTOR_TOKEN`.
-Das ist ein Fine-grained Token mit „Contents: Read-only“ nur für `charizzzzard/nischen-motor`.
-Alternative: das Repo öffentlich machen. Es enthält keine Geheimnisse.
+Dieses Repo ist öffentlich. Die CI einer Website lädt den Motor deshalb ohne Token oder Secret.
+Folge: Hier gehören keine Geheimnisse, Zugangsdaten, Partner-Kennungen, Kennzahlen oder Inhaber-Daten hinein (siehe `CLAUDE.md`).
 
 ## Entwicklung
 

@@ -12,10 +12,13 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      - name: Motor-Version abgleichen (.motor-version = requirements.txt)
+        run: |
+          v="$(tr -d '[:space:]' < .motor-version)"
+          grep -q "nischen-motor@${v}\$" requirements.txt \
+            || { echo "::error::requirements.txt nennt nicht die Motor-Version ${v} aus .motor-version"; exit 1; }
       - name: Motor installieren (Version aus .motor-version)
-        env:
-          # Lese-Token für das private Repo charizzzzard/nischen-motor (Repository-Secret MOTOR_TOKEN)
-          MOTOR_TOKEN: ${{ secrets.MOTOR_TOKEN }}
-        run: pip install "nischen-motor @ git+https://x-access-token:${MOTOR_TOKEN}@github.com/charizzzzard/nischen-motor@$(cat .motor-version)"
+        # charizzzzard/nischen-motor ist öffentlich: kein Token, kein Secret nötig
+        run: pip install "nischen-motor @ git+https://github.com/charizzzzard/nischen-motor@$(tr -d '[:space:]' < .motor-version)"
       - name: Bauen und prüfen
         run: motor check

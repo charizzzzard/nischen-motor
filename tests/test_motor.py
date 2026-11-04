@@ -244,6 +244,17 @@ def test_vorlage_baut_und_prueft(tmp_path):
     assert daten["artikel"] == []  # Beispiel ist Entwurf
 
 
+def test_vorlage_bindet_aktuelle_version_ohne_secret():
+    vorlage = MOTOR_DIR / "vorlage"
+    tag = f"v{motor.__version__}"
+    assert (vorlage / ".motor-version").read_text().strip() == tag
+    zeilen = [z.strip() for z in (vorlage / "requirements.txt").read_text().splitlines()
+              if z.strip() and not z.lstrip().startswith("#")]
+    assert zeilen == [f"nischen-motor @ git+https://github.com/charizzzzard/nischen-motor@{tag}"]
+    ci = (vorlage / ".github" / "workflows" / "pruefen.yml").read_text()
+    assert "secrets." not in ci  # Motor-Repo ist öffentlich
+
+
 def test_neu_verweigert_vollen_ordner(tmp_path):
     (tmp_path / "voll").mkdir()
     (tmp_path / "voll" / "datei.txt").write_text("x")

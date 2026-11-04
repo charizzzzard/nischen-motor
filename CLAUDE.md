@@ -13,6 +13,8 @@ Der Motor wird von allen Websites des Portfolios genutzt. Ein Fehler hier trifft
 4. **Barrierearm:** Klickflächen mindestens 44 px, Kontrast, Fokus sichtbar, keine horizontale Seitenrolle bei 390 px.
    Nach Änderungen an Templates oder CSS einen Screenshot bei 390 px Breite prüfen.
 5. **Nichts nischenspezifisch:** Alles, was nur eine Website braucht, gehört in deren Repo (Templates überschreiben, `site.css`, `static/js`).
+6. **Das Repo ist öffentlich** (seit 04.11.2026): keine Geheimnisse, Zugangsdaten, echten Partner-Kennungen, Kennzahlen
+   oder Inhaber-Daten in Code, Tests, Beispielen oder Commit-Texten.
 
 ## Versionen
 

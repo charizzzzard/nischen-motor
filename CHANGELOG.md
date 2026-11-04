@@ -1,6 +1,6 @@
 # Änderungen
 
-## 0.1.0 – 2026-11-03
+## 0.1.0 – 2026-11-04
 
 Erste Version, abgeleitet aus der Technik von netzleicht.de.
 
@@ -14,4 +14,5 @@ Erste Version, abgeleitet aus der Technik von netzleicht.de.
 - **Vergleiche:** Tabellen aus `daten/vergleiche/*.yaml` mit Quelle je Zeile, Stand-Datum, alphabetisch
 - **Prüfung:** `motor check` mit Regeln aus der Geschäftsordnung, Grenzwerte je Website einstellbar
 - **Vorlage:** `motor neu` legt eine Website an: site.yaml, partner.yaml, Pflichtseiten mit Platzhaltern, Beispielartikel, CI, CLAUDE.md
+  - CI lädt den Motor ohne Token (Repo öffentlich) und bricht ab, wenn `.motor-version` und `requirements.txt` abweichen
 - **Tests:** 19 Tests (pytest)
