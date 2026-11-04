@@ -2,8 +2,6 @@
 
 Statischer Website-Motor für das Nischen-Portfolio. Er baut aus Markdown eine schnelle Website und prüft sie vor jeder Veröffentlichung auf die Regeln aus der Geschäftsordnung im Repo `nischen-leitstand`.
 
-Er ist aus der Technik von netzleicht.de abgeleitet, aber ohne deren Besonderheiten (Figuren, Gerätefilter, Echt-Check) und um Ertragsbausteine ergänzt.
-
 ## Was der Motor kann
 
 | Bereich | Funktion |

@@ -2,7 +2,7 @@
 
 ## 0.1.0 – 2026-11-04
 
-Erste Version, abgeleitet aus der Technik von netzleicht.de.
+Erste Version.
 
 - **Bauen:**
   - Artikel und Seiten aus Markdown
